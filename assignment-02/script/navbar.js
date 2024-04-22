@@ -1,10 +1,11 @@
 // DOM
-// navbar
-const navEl = document.getElementById('sidebar')
-const navBtn = document.getElementById('sidebar-title')
+const navEl = document.getElementById("sidebar")
+const navBtn = document.getElementById("sidebar-title")
 
+// Toggle Navbar
 const toggleNavbar = () => {
-    navEl.classList.toggle('active')
+  navEl.classList.toggle("active")
 }
 
-navBtn.addEventListener('click', toggleNavbar)
+// Add event listener
+navBtn.addEventListener("click", toggleNavbar)

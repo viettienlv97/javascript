@@ -1,15 +1,18 @@
-'use strict'
-
-const tien = {
-  name: 'Tien',
-  age: 27,
-}
-console.log(tien)
-const change = (person) => {
-  person.name = 'Viet Tien'
-  person.age = 28
-}
-
-change(tien)
-
-console.log(tien)
+// 'use strict'
+// const secureBooking = () => {
+//   let passengerCount = 0
+//   return [
+//     () => {
+//       passengerCount++
+//       console.log('passengerCount', passengerCount)
+//     },
+//     () => {
+//       console.log('total passsenger', passengerCount)
+//     },
+//   ]
+// }
+// const booking = secureBooking()
+// booking[0]()
+// booking[0]()
+// booking[0]()
+// booking[1]()

@@ -1,9 +1,9 @@
-'use strict';
+"use strict"
 
 // local storage
-const saveToStorage = function(key, value) {
-    localStorage.setItem(key, JSON.stringify(value))
+const saveToStorage = function (key, value) {
+  localStorage.setItem(key, JSON.stringify(value))
 }
 const getFromStorage = function (key, defaultValue) {
-    return localStorage.getItem(key) ?? defaultValue
+  return JSON.parse(localStorage.getItem(key)) ?? defaultValue
 }
