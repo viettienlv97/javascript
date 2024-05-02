@@ -1,0 +1,20 @@
+Môi trường runtime trên browser chứa 3 thành phần chính:
+- JS Engine
+- Web APIs
+- Callback Queue
+
+# JS Engine là trái tim của runtime, nó chứa Heap và Call Stack
+- Heap là nơi các object được lưu trữ ở bộ nhớ.
+- Call Stack là nơi code được thực thi.
+-> JS chỉ có duy nhất 1 luồng hoạt động, không thể xử lý nhiều tác vụ 1 lúc.
+
+# Web APIs là các phương thức bổ trợ từ trình duyệt, không phải là 1 phần của Javascript
+
+# Callback Queue là hàng chờ các callback function của các event chờ được thực thi.
+
+## Cách bất đồng bộ hoạt động trong Javascript
+Event loop chạy vòng tròn: Call Stack -> Web APIs -> Callback Queue -> Call Stack ...
+
+- Tất cả các task bất đồng bộ được khai báo trong Web APIs sẽ được đưa vào callback Queue, theo hàng chờ và chạy
+- Tất cả các task của promise sẽ được đưa vào Microtasks Queue, giống với Callback Queue nhưng ưu tiên hơn
+-> Nếu tất cả các task trong Microtasks Queue chưa chạy xong thì Callback Queue chưa đến lượt.
