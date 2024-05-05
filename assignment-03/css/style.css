@@ -97,6 +97,14 @@
   float: left;
   font-size: 16px;
 }
+#todo-container input.invalid {
+  border: 1px solid red;
+}
+
+#todo-container input.invalid:focus-visible {
+  border: 1px solid red;
+  outline: none;
+}
 
 /* Style the "Add" button */
 #todo-container #btn-add {

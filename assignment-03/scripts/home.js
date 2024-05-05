@@ -22,6 +22,7 @@ const showHomePage = () => {
   }
 }
 
+// handle logout
 const handleLogout = e => {
   console.log(window.location.href)
   if (!user) return

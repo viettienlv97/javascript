@@ -1,3 +1,5 @@
+'use strict'
+
 import { parseUser } from '../models/User'
 import { directTo } from './helper'
 import { getFromStorage } from './storage'
@@ -5,19 +7,23 @@ import { getFromStorage } from './storage'
 // Data
 const user = parseUser(getFromStorage('USER', null))
 if (!user) directTo('login')
-let totalResults = null
+
+const apiKey = 'f79c1631e40447bbb6df1ecdc34f11e1'
+let totalResults = 0
+let query = ''
 const newsOptions = {
-  category: user.category ?? 'general',
-  pageSize: user.pageSize ?? 5,
+  pageSize: user.pageSize ?? 10,
   pageIndex: 1
 }
-const apiKey = 'f79c1631e40447bbb6df1ecdc34f11e1'
 
 // DOM
+const formSearch = document.getElementById('form-search')
+const inputSearch = document.getElementById('input-query')
 const newsContainer = document.getElementById('news-container')
 const paginationBtns = document.getElementById('pagination-btns')
 
-// Post template
+// Template
+// New template
 const postTemplate = data => {
   return `
   <div class="card flex-row flex-wrap">
@@ -50,7 +56,7 @@ const postTemplate = data => {
 </div>
   `
 }
-// Pagination template
+// Prev button template
 const preBtnTemplate = () => {
   return `
   <li class="page-item">
@@ -60,6 +66,7 @@ const preBtnTemplate = () => {
   </li>
 `
 }
+// Next button template
 const nextBtnTemplate = () => {
   return `
   <li class="page-item">
@@ -69,6 +76,7 @@ const nextBtnTemplate = () => {
   </li>
   `
 }
+// Number button template
 const numberBtn = num => {
   return `
   <li class="page-item">
@@ -79,8 +87,12 @@ const numberBtn = num => {
   `
 }
 
-// Bind template for pagination
+// Bind template
 const bindPagination = () => {
+  if (totalResults === 0) {
+    paginationBtns.innerHTML = null
+    return
+  }
   const last = Math.floor(totalResults / newsOptions.pageSize)
   let templates = ''
   if (newsOptions.pageIndex !== 1) {
@@ -96,28 +108,38 @@ const bindPagination = () => {
   paginationBtns.innerHTML = templates
   addClickEventPagination(last)
 }
-
-// Bind template for news and run when open page
-;(bindData = async () => {
-  const data = await user.fetchNew(apiKey, newsOptions)
-  if (!data) return
-
+const bindNews = data => {
   totalResults = data.totalResults
   let templates = ''
   data.articles.forEach(post => {
     templates += postTemplate(post)
   })
   newsContainer.innerHTML = templates
-  bindPagination()
-})()
+}
 
+// Search news
+const search = async () => {
+  const data = await user.searchNews(apiKey, query, newsOptions)
+  if (!data) return
+
+  bindNews(data)
+  bindPagination()
+}
+
+// Handle submit
+const handleSubmit = e => {
+  e.preventDefault()
+  newsOptions.pageIndex = 1
+  query = inputSearch.value
+  search()
+}
 // Handle change page
 const handleChangePage = pageIndex => {
   newsOptions.pageIndex = pageIndex
-  bindData()
+  search()
 }
 
-// Add event listener
+// Event listener
 const addClickEventPagination = last => {
   for (let i = 1; i <= last; i++) {
     let btn = document.getElementById('page-num-' + i)
@@ -132,3 +154,4 @@ const addClickEventPagination = last => {
     handleChangePage(newsOptions.pageIndex + 1)
   )
 }
+formSearch.addEventListener('submit', handleSubmit)

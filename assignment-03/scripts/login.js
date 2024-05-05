@@ -4,7 +4,6 @@ import { directToHome } from './helper.js'
 
 const key = 'USER_ARRAY'
 const userArr = getFromStorage(key, [])
-console.log(userArr)
 
 // DOM
 const formLogin = document.getElementById('form-login')
@@ -12,7 +11,6 @@ const inputUsername = document.getElementById('input-username')
 const inputPassword = document.getElementById('input-password')
 
 // Function
-
 // Check user
 const checkUser = (username, password) => {
   const loginUser = userArr.find(user => user.username === username)

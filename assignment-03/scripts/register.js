@@ -51,9 +51,7 @@ const submitRegister = e => {
   if (!validatePassword(password, confirmPassword)) return
 
   const newUser = new User(firstName, lastName, username, password)
-  console.log(newUser)
   userArr.push(newUser)
-  console.log(userArr)
   saveToStorage(key, userArr)
   directTo('login')
 }
