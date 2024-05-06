@@ -31,14 +31,15 @@ const fibonacci = (num, array = [0, 1]) => {
   return array
 }
 //console.log(fibonacci(12))
-
+console.time('fibo')
 // With recursion
 const fib = (num, array = [0, 1]) => {
   if (num <= 2) return array
   const [nextToLast, last] = array.slice(-2)
   return fib(num - 1, [...array, nextToLast + last])
 }
-//console.log(fib(12))
+console.log(fib(5))
+console.timeEnd('fibo')
 
 const fibPos = (num, array = null) => {
   if (array == null) {
@@ -51,4 +52,4 @@ const fibPos = (num, array = null) => {
   else return fibPos(num, array)
 }
 
-console.log(fibPos(21))
+//console.log(fibPos(21))
