@@ -1,0 +1,12 @@
+#### THUẬT TOÁN:
+
+## Định nghĩa: 
+- Giải thuật (hay còn gọi là thuật toán - Algorithms) là 1 tập hợp các chỉ thị để thực thi theo thứ tự nào đó để thu được kết quả mong muốn.
+- Giải thuật độc lập với các ngôn ngữ lập trình, 1 giải thuật có thể được triển khai trong nhiều ngôn ngữ lt khác nhau.
+
+## Một số giải thuật quan trọng:
+- Thuật toán "Tìm kiếm".
+- Thuật toán "Sắp xếp".
+- Thuật toán "Chèn".
+- Thuật toán "Cập nhật".
+- Thuật toán "Xoá".
