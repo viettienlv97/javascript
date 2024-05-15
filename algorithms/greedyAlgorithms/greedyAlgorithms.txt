@@ -1,0 +1,26 @@
+Thuật toán tham lam (Greedy Algorithm) là một phương pháp giải quyết vấn đề 
+thuộc lớp các thuật toán tìm kiếm và tối ưu hóa. Ý tưởng cơ bản của thuật 
+toán tham lam là chọn lựa chọn tốt nhất tại mỗi bước mà không xem xét tất 
+cả các lựa chọn có sẵn hoặc các tác động trong tương lai. Mặc dù không đảm 
+bảo tìm ra giải pháp tối ưu toàn cục trong mọi trường hợp, nhưng thuật toán 
+tham lam thường là một lựa chọn hữu ích cho các bài toán cụ thể trong thực 
+tế với những điểm mạnh như:
+
+Đơn giản: Thuật toán tham lam thường đơn giản và dễ triển khai, vì nó thường 
+chỉ đòi hỏi một số ít hoặc không có dữ liệu bổ sung.
+Hiệu quả: Trong một số trường hợp, thuật toán tham lam có thể đưa ra giải 
+pháp tương đối gần với tối ưu toàn cục, trong khi vẫn giảm thiểu thời gian 
+và không gian tính toán.
+Khả năng ứng dụng rộng rãi: Thuật toán tham lam có thể được sử dụng để giải 
+quyết nhiều loại vấn đề, từ bài toán tối ưu hóa đến các vấn đề tìm kiếm và 
+tối ưu hóa trong thực tế.
+Tuy nhiên, nó cũng có nhược điểm như:
+
+Không đảm bảo tối ưu toàn cục: Thuật toán tham lam thường không đảm bảo tìm 
+ra giải pháp tối ưu toàn cục trong mọi trường hợp.
+Không phù hợp cho mọi bài toán: Có một số bài toán mà thuật toán tham lam 
+không phù hợp hoặc không cho kết quả tốt, đặc biệt là các bài toán có tính 
+phức tạp cao và yêu cầu sự xem xét kỹ lưỡng về các lựa chọn.
+Tóm lại, thuật toán tham lam là một công cụ mạnh mẽ và hữu ích trong giải 
+quyết nhiều loại vấn đề, nhưng cũng cần được sử dụng cẩn thận và đánh giá kỹ 
+lưỡng để đảm bảo rằng nó phù hợp với bài toán cụ thể.
