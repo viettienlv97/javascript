@@ -1,0 +1,144 @@
+// Function.call và Function.apply
+function.call dùng để gọi function đó với tham số 1 là object chứa ngữ cảnh
+và các tham số còn lại là tham số của fn
+function.apply giống với .call() nhưng các tham số sẽ được đưa vào mảng tham số thứ 2
+
+ví dụ: 
+const user = {
+  name: 'Tien'
+}
+
+function logName (arg1, arg2) {
+  console.log(this.name)
+}
+logName.call(user, arg1, arg2)
+logName.apply(user, [arg1, arg2])
+-> đưa user vào .call() và .apply() để gán ngữ cảnh this cho logName
+
+// Function.bind
+function.bind trả về 1 hàm mới với ngữ cảnh đưa vào để gọi sau này
+ví dụ:
+
+const logUserName = logName.bind(user, arg1, arg2)
+logUserName()
+-> gán function với ngữ cảnh để dùng sau, không gọi ngay function đó.
+
+// Array.method()
+
+arr.push() -> thêm phần tử vào cuối mảng
+arr.pop() -> xóa phần tử cuối cùng của mảng
+arr.unshift() -> thêm phần tử vào đầu mảng
+arr.shift() -> xóa phần tử đầu tiên của mảng
+arr.slice() -> trả về mảng mới tùy vào tham số
+  -> slice() -> trả về shalow copy của mảng gốc -> tương tự [...array]
+  -> slice(index) -> bắt đầu từ vị trí index
+  -> slice(i, j) -> từ i đến j-1
+  
+filtered = arr.filter() -> trả về 1 mảng mới lọc điều kiện từ mảng cũ
+mapped = arr.map() -> trả về 1 mảng mới lọc theo từng phần tử mảng cũ
+arr.forEach() -> lọc qua từng phần tử trong mảng -> tương tự for()
+
+arr3 = arr1.concat(arr2) -> trả về 1 mảng mới nối arr1 với arr2
+ tương tự [...arr1, ...arr2]
+
+
+// Promise.method()
+const promise1 = new Promise((resolve, reject) => {
+  if (something) {
+    resolve('abc')
+  } else {
+    reject('error')
+  }
+})
+## Promise.all() 
+-> trả về 1 promise, giá trị trả về là 1 mảng các giá trị của 
+các promise con, trả về lỗi khi có bất kì 1 promise lỗi
+promise1 = Promise.resolve(3)
+promise2 = 24
+promise3 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, 'foo')
+})
+Promise.all([promise1, promise2, promise3])
+  .then((values) => console.log(values)) // [3, 24, 'foo']
+
+## Promise.allSettled()
+-> trả về 1 promise, giá trị trả về là 1 mảng các giá trị của
+các promise con, luôn fulfills kể cả khi có reject
+
+## Promise.any()
+-> trả về 1 promise, giá trị trả về là result của 
+promise đầu tiên fulfill
+
+
+// MERGE SORT
+const merge = (left, right) => {
+  let result = []
+  let leftIndex = 0
+  let rightIndex = 0
+
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+      result.push(left[leftIndex])
+      leftIndex++
+    } else {
+      result.push(right[rightIndex])
+      rightIndex++
+    }
+  }
+
+  while (leftIndex < left.length) {
+    result.push(left[leftIndex])
+    leftIndex++
+  }
+
+  while (rightIndex < right.length) {
+    result.push(right[rightIndex])
+    rightIndex++
+  }
+
+  return result
+}
+
+const MergeSort = arr => {
+  if (arr.length <= 1) return arr
+
+  const mid = Math.floor(arr.length / 2)
+
+  const left = arr.slice(0, mid)
+  const right = arr.slice(mid)
+
+  return merge(MergeSort(left), MergeSort(right))
+}
+
+const arr = Array.from({ length: 100 }, () => Math.floor(Math.random() * 100))
+
+const sorted = MergeSort(arr)
+
+
+// QUICK SORT
+function quickSort(arr) {
+  if (arr.length <= 1) {
+    return arr
+  }
+
+  const pivot = arr[0]
+  const left = []
+  const right = []
+  const middle = []
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] < pivot) {
+      left.push(arr[i])
+    } else if (arr[i] === pivot) {
+      middle.push(arr[i])
+    } else {
+      right.push(arr[i])
+    }
+  }
+
+  return [...quickSort(left), ...middle, ...quickSort(right)]
+}
+
+const arr = [2, 3, 9, 2, 2]
+const sortedArr = quickSort(arr)
+console.log('Mảng đã sắp xếp:', sortedArr)

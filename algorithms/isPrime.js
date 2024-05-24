@@ -2,15 +2,15 @@
 // số nguyên tố: là số chỉ chia hết cho 1 và chính nó
 
 // O(n)
-function isPrime(n) {
-  if (n <= 1) return false
-  for (let i = 0; i <= n - 1; i++) {
-    if (n % i == 0) return false
-  }
-  return true
-}
+// function isPrime(n) {
+//   if (n <= 1) return false
+//   for (let i = 0; i <= n - 1; i++) {
+//     if (n % i == 0) return false
+//   }
+//   return true
+// }
 // O(√n) -> hiệu quả hơn
-function isPrime_2(n) {
+function isPrime(n) {
   // nếu <= 1 thì sai
   if (n <= 1) return false
   if (n <= 3) return true //nếu <= 3 (2,3) thì là số nguyên tố
@@ -22,4 +22,4 @@ function isPrime_2(n) {
   }
   return true
 }
-console.log(isPrime_2(5))
+console.log(isPrime(5))
